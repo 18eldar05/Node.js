@@ -1,0 +1,120 @@
+<%- include ('head'); -%>
+
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Отправитель</th>
+            <th scope="col">Получатель</th>
+            <th scope="col">Дата отправки</th>
+            <th scope="col">Признак</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% if (amount !== 'one') {
+            articles.forEach((article) => { %>
+            <tr>
+                <th scope="row">
+                    <a href="/articles/<%= article.id %>">
+                        <%= article.id %>
+                    </a>
+                </th>
+                <td>
+                    <a href="/articles/<%= article.id %>">
+                        <%= article.title %>
+                    </a>
+                </td>
+                <td>
+                    <a href="/articles/<%= article.id %>">
+                        <%= article.content %>
+                    </a>
+                </td>
+                <td>
+                    <a href="/articles/<%= article.id %>">
+                        <%= article.date %>
+                    </a>
+                </td>
+                <td>
+                    <a href="/articles/<%= article.id %>">
+                        <%= article.attribute %>
+                    </a>
+                </td>
+                <td>
+                    <a href="/articles/" class="trash_a"><i class="fa-solid fa-trash" data-id="<%= article.id %>"></i></a>
+                </td>
+            </tr>
+        <% })} else { %>
+            <tr>
+                <th scope="row">
+                    <a href="/articles/<%= articles.id %>">
+                        <%= articles.id %>
+                    </a>
+                </th>
+                <td>
+                    <a href="/articles/<%= articles.id %>">
+                        <%= articles.title %>
+                    </a>
+                </td>
+                <td>
+                    <a href="/articles/<%= articles.id %>">
+                        <%= articles.content %>
+                    </a>
+                </td>
+                <td>
+                    <a href="/articles/<%= articles.id %>">
+                        <%= articles.date %>
+                    </a>
+                </td>
+                <td>
+                    <a href="/articles/<%= articles.id %>">
+                        <%= articles.attribute %>
+                    </a>
+                </td>
+                <td>
+                    <a href="/articles/" class="trash_a"><i class="fa-solid fa-trash" data-id="<%= articles.id %>"></i></a>
+                </td>
+            </tr>
+        <% } %>
+    </tbody>
+</table>
+
+<form method="post">
+    <p>
+        <input type="submit" value="Добавить" class="btn btn-success i1">
+        <input name="title" autofocus placeholder="Отправитель" class="form-control i2">
+        <input name="content" placeholder="Получатель" class="form-control i3">
+        <input name="date" type="date" placeholder="Дата отправки" class="form-control i4">
+        <input name="attribute" placeholder="Признак" class="form-control last i5">
+    </p>
+</form>
+
+<form method="post" action="/show-feature">
+    <p>
+        <input type="submit" value="Поиск по дате" class="btn btn-primary dat i6">
+        <input name="feature" type="date" placeholder="фича" class="form-control last i7">
+    </p>
+</form>
+
+<form action="/show-feature-2">
+    <p>
+        <input type="submit" value="Показать заказные письма" class="btn btn-primary i8">
+    </p>
+</form>
+
+<% if (amount !== 'all') { %><p><a class="btn btn-danger i9" href="/articles/"><i class="fa-solid fa-arrow-left-long"></i> Назад</a></p><% } %>
+
+<script>
+    document.addEventListener('click', (e) => {
+        const id = e.target?.dataset?.id || null;
+        if (id) {
+            fetch(`/articles/${id}`, {
+                method: 'DELETE'
+            });//.then(() => {
+            //     window.location.reload();
+            // });
+        }
+    });
+</script>
+
+<%- include ('foot'); -%>

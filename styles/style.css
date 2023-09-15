@@ -1,0 +1,32 @@
+body {
+    background-color: black;
+}
+
+a {
+    text-decoration: none;
+    color: unset;
+}
+
+.trash_a:hover {
+    color: red;
+}
+
+.trash_a:active {
+    color: darkred;
+}
+
+.vpered {
+    background-color: violet;
+    color: white;
+    text-align: center;
+    padding: 3px 8px 3px 8px;
+    text-decoration: none;
+    /*font-size: 36px;*/
+    /*line-height: 25px;*/
+    border-radius: 3px;
+}
+
+.vpered:hover {
+    background-color: red;
+    color: black;
+}
